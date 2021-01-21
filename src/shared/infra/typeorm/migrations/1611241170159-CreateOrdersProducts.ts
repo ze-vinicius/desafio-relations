@@ -52,7 +52,7 @@ export default class CreateOrdersProducts1611241170159
     );
 
     await queryRunner.createForeignKey(
-      'order_products',
+      'orders_products',
       new TableForeignKey({
         name: 'OrdersProductsOrder',
         columnNames: ['order_id'],
@@ -63,7 +63,7 @@ export default class CreateOrdersProducts1611241170159
     );
 
     await queryRunner.createForeignKey(
-      'order_products',
+      'orders_products',
       new TableForeignKey({
         name: 'OrdersProductsProduct',
         columnNames: ['product_id'],
@@ -75,8 +75,11 @@ export default class CreateOrdersProducts1611241170159
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('order_products', 'OrdersProductsProduct');
-    await queryRunner.dropForeignKey('order_products', 'OrdersProductsOrder');
+    await queryRunner.dropForeignKey(
+      'orders_products',
+      'OrdersProductsProduct',
+    );
+    await queryRunner.dropForeignKey('orders_products', 'OrdersProductsOrder');
     await queryRunner.dropTable('orders_products');
   }
 }
